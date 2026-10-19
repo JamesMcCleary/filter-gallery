@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Filter gallery: animated reflow demo</title>
+  <link rel="stylesheet" href="src/filter-gallery.css">
+  <style>
+    /* Demo page only. Not needed to use the component. */
+    body {
+      margin: 0;
+      padding: 3rem 1.5rem;
+      background: #0a0a0c;
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+      color: #f8fafc;
+    }
+    main { max-width: 1080px; margin: 0 auto; }
+    h1 { font-size: 1.75rem; margin: 0 0 0.5rem; }
+    .lede { color: #94a3b8; margin: 0 0 2rem; max-width: 60ch; line-height: 1.6; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Filter gallery</h1>
+    <p class="lede">Choose a filter. Cards that stay glide into place, cards that leave fade out, and new cards grow in. Try clicking quickly, or turn on reduced motion in your system settings.</p>
+
+    <section class="fg" data-filter-gallery aria-label="Project gallery">
+      <div class="fg-filters" role="group" aria-label="Filter projects">
+        <button class="fg-filter is-active" type="button" data-filter="all" aria-pressed="true">All</button>
+        <button class="fg-filter" type="button" data-filter="product" aria-pressed="false">Product</button>
+        <button class="fg-filter" type="button" data-filter="motion" aria-pressed="false">Motion</button>
+        <button class="fg-filter" type="button" data-filter="systems" aria-pressed="false">Systems</button>
+      </div>
+
+      <div class="fg-wrap" data-fg-wrap>
+        <ul class="fg-grid" data-fg-grid>
+          <li class="fg-item" data-tag="product">
+            <figure class="fg-card"><div class="fg-media" style="--hue: 200"></div>
+              <figcaption class="fg-caption"><span class="fg-cat">Product</span><h3>Checkout redesign</h3></figcaption></figure>
+          </li>
+          <li class="fg-item" data-tag="motion">
+            <figure class="fg-card"><div class="fg-media" style="--hue: 260"></div>
+              <figcaption class="fg-caption"><span class="fg-cat">Motion</span><h3>Onboarding transitions</h3></figcaption></figure>
+          </li>
+          <li class="fg-item" data-tag="systems">
+            <figure class="fg-card"><div class="fg-media" style="--hue: 160"></div>
+              <figcaption class="fg-caption"><span class="fg-cat">Systems</span><h3>Design token pipeline</h3></figcaption></figure>
+          </li>
+          <li class="fg-item" data-tag="product">
+            <figure class="fg-card"><div class="fg-media" style="--hue: 30"></div>
+              <figcaption class="fg-caption"><span class="fg-cat">Product</span><h3>Subscription management</h3></figcaption></figure>
+          </li>
+          <li class="fg-item" data-tag="motion">
+            <figure class="fg-card"><div class="fg-media" style="--hue: 330"></div>
+              <figcaption class="fg-caption"><span class="fg-cat">Motion</span><h3>Launch film system</h3></figcaption></figure>
+          </li>
+          <li class="fg-item" data-tag="systems">
+            <figure class="fg-card"><div class="fg-media" style="--hue: 190"></div>
+              <figcaption class="fg-caption"><span class="fg-cat">Systems</span><h3>Multi-brand component library</h3></figcaption></figure>
+          </li>
+          <li class="fg-item" data-tag="product">
+            <figure class="fg-card"><div class="fg-media" style="--hue: 110"></div>
+              <figcaption class="fg-caption"><span class="fg-cat">Product</span><h3>Search and discovery</h3></figcaption></figure>
+          </li>
+          <li class="fg-item" data-tag="systems">
+            <figure class="fg-card"><div class="fg-media" style="--hue: 240"></div>
+              <figcaption class="fg-caption"><span class="fg-cat">Systems</span><h3>Accessible data tables</h3></figcaption></figure>
+          </li>
+          <li class="fg-item" data-tag="motion">
+            <figure class="fg-card"><div class="fg-media" style="--hue: 15"></div>
+              <figcaption class="fg-caption"><span class="fg-cat">Motion</span><h3>Micro-interaction study</h3></figcaption></figure>
+          </li>
+        </ul>
+      </div>
+
+      <p class="fg-status" data-fg-status aria-live="polite"></p>
+    </section>
+  </main>
+
+  <script type="module">
+    import { initFilterGallery } from './src/filter-gallery.js';
+    initFilterGallery(document.querySelector('[data-filter-gallery]'));
+  </script>
+</body>
+</html>
