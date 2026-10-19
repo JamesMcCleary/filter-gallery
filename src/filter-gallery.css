@@ -1,0 +1,133 @@
+/* Filter gallery: layout and default theme tokens.
+   Override the --fg-* custom properties on .fg to match your own palette. */
+
+.fg {
+  position: relative;
+  --fg-accent: #818cf8;
+  --fg-text: #f8fafc;
+  --fg-muted: #94a3b8;
+  --fg-surface: rgba(255, 255, 255, 0.03);
+  --fg-border: rgba(255, 255, 255, 0.1);
+  --fg-border-strong: rgba(255, 255, 255, 0.25);
+  color: var(--fg-text);
+}
+
+/* Filter buttons */
+.fg-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0 0 1.5rem;
+}
+
+.fg-filter {
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.5rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid var(--fg-border);
+  background: transparent;
+  color: var(--fg-muted);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.fg-filter:hover {
+  color: var(--fg-text);
+  border-color: var(--fg-border-strong);
+}
+
+.fg-filter.is-active {
+  background: var(--fg-accent);
+  border-color: var(--fg-accent);
+  color: #0a0a0c;
+}
+
+.fg-filter:focus-visible {
+  outline: 2px solid var(--fg-accent);
+  outline-offset: 3px;
+}
+
+/* Wrapper clips the grid and is the element whose height animates */
+.fg-wrap {
+  position: relative;
+  overflow: hidden;
+}
+
+.fg-grid {
+  position: relative;   /* anchor for cards that are animating out */
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 900px) {
+  .fg-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 560px) {
+  .fg-grid { grid-template-columns: 1fr; }
+}
+
+/* Hidden items take no space. Leaving items are shown with .is-exiting,
+   which comes after [hidden] so it wins. */
+.fg-item[hidden] { display: none; }
+
+.fg-item.is-exiting {
+  display: block;
+  position: absolute;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Card */
+.fg-card {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 16px;
+  border: 1px solid var(--fg-border);
+  background: var(--fg-surface);
+}
+
+.fg-media {
+  aspect-ratio: 4 / 3;
+  background: linear-gradient(
+    140deg,
+    hsl(var(--hue, 220) 70% 55%),
+    hsl(calc(var(--hue, 220) + 40) 60% 30%)
+  );
+}
+
+.fg-caption {
+  padding: 0.9rem 1rem 1rem;
+}
+
+.fg-cat {
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+
+.fg-caption h3 {
+  margin: 0.25rem 0 0;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+/* Visually hidden, but still read by screen readers */
+.fg-status {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
