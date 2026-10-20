@@ -133,9 +133,11 @@ export function initFilterGallery(root, options = {}) {
 
     const newHeight = gridAfter.height;
     if (newHeight !== firstHeight) {
+      // fill: 'forwards' holds the new height until the run finishes. Without it, the wrapper
+      // snaps back to the pinned old height when this short animation ends, clipping the new rows.
       animations.push(wrap.animate(
         [{ height: `${firstHeight}px` }, { height: `${newHeight}px` }],
-        { duration: timing.moveMs, easing: EASE }
+        { duration: timing.moveMs, easing: EASE, fill: 'forwards' }
       ));
     }
 
